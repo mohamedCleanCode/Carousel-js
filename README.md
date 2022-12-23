@@ -1,2 +1,2 @@
-# Draggable-Image-Slider-js
+# Carousel-js
 Vanilla html, css and javascript
