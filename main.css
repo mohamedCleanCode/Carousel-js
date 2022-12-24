@@ -63,11 +63,22 @@ body {
 .contant .pass-security::before {
   content: "";
   position: absolute;
-  width: 50%;
   height: 100%;
   top: 0;
   left: 0;
+  transition: all 0.7s linear;
+}
+.contant .pass-security#weak::before {
   background-color: red;
+  width: 25%;
+}
+.contant .pass-security#medium::before {
+  background-color: yellow;
+  width: 50%;
+}
+.contant .pass-security#strong::before {
+  background-color: green;
+  width: 100%;
 }
 .contant .pass-length {
   width: 100%;

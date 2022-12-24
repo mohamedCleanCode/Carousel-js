@@ -9,12 +9,7 @@ const characters = {
 const inputLength = document.querySelector("[type='range']");
 const optionsInput = document.querySelectorAll(".option input");
 const generateBtn = document.querySelector(".generate-btn");
-
-// Func handel range
-const updateRange = () => {
-  document.querySelector(".pass-length span").innerHTML = inputLength.value;
-};
-updateRange();
+const passSecurity = document.querySelector(".pass-security");
 
 // Func generatePassword
 const generatePassword = () => {
@@ -53,6 +48,24 @@ const generatePassword = () => {
   document.querySelector(".pass-box input").value = randomPassword;
 };
 generatePassword();
+
+// Func update passSecurity length with some colors
+const updatePassSecurity = () => {
+  passSecurity.id =
+    inputLength.value <= 8
+      ? "weak"
+      : inputLength.value <= 16
+      ? "medium"
+      : "strong";
+};
+
+// Func handel range
+const updateRange = () => {
+  document.querySelector(".pass-length span").innerHTML = inputLength.value;
+  generatePassword();
+  updatePassSecurity();
+};
+updateRange();
 
 inputLength.addEventListener("input", updateRange);
 generateBtn.addEventListener("click", generatePassword);
