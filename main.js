@@ -10,6 +10,7 @@ const inputLength = document.querySelector("[type='range']");
 const optionsInput = document.querySelectorAll(".option input");
 const generateBtn = document.querySelector(".generate-btn");
 const passSecurity = document.querySelector(".pass-security");
+const copyIcon = document.querySelector(".copy-icon");
 
 // Func generatePassword
 const generatePassword = () => {
@@ -67,5 +68,18 @@ const updateRange = () => {
 };
 updateRange();
 
+// Func copy Password
+const copyPassword = () => {
+  navigator.clipboard.writeText(
+    document.querySelector(".pass-box input").value
+  );
+  copyIcon.children[0].remove();
+  copyIcon.innerHTML = "<i class='fa-solid fa-check'></i>";
+  setTimeout(() => {
+    copyIcon.innerHTML = "<i class='fa-regular fa-copy'></i>";
+  }, 2000);
+};
+
 inputLength.addEventListener("input", updateRange);
 generateBtn.addEventListener("click", generatePassword);
+copyIcon.addEventListener("click", copyPassword);
