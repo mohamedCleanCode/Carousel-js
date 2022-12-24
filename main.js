@@ -21,18 +21,32 @@ const generatePassword = () => {
   let allPassword = "";
   let passLength = inputLength.value;
   let randomPassword = "";
+  let isDuplicate = false;
 
   // Loop on inputs to get checked inputs
   optionsInput.forEach((option) => {
     if (option.checked) {
-      allPassword += characters[option.id];
+      if (option.id !== "duplicate" && option.id !== "space") {
+        allPassword += characters[option.id];
+      } else if (option.id === "space") {
+        allPassword += `    ${allPassword}    `;
+      } else {
+        isDuplicate = true;
+      }
     }
   });
 
   // Loop on allPassword to get random password
   for (let i = 0; i < passLength; i++) {
-    randomPassword +=
+    let randomChar =
       allPassword[Math.floor(Math.random() * allPassword.length)];
+    if (isDuplicate) {
+      !randomPassword.includes(randomChar) || randomChar == " "
+        ? (randomPassword += randomChar)
+        : i--;
+    } else {
+      randomPassword += randomChar;
+    }
   }
 
   // Add randomPassword to DOM
